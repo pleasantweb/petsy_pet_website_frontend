@@ -4,3 +4,9 @@ const nextConfig = {
 }
 
 module.exports = nextConfig
+
+module.exports = {
+  images: {
+    domains: ['cdn2.thedogapi.com','res.cloudinary.com'],
+  },
+}

@@ -1,0 +1,71 @@
+section.add_new_breed{
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+    .heading{
+        width: inherit;
+        text-align: center;
+        h1{
+            font-size: 2.5rem;
+            color: gray;
+        }
+    }
+    .add_new_form{
+        width: inherit;
+        height: inherit;
+        min-height: inherit;
+        padding: 20px 20px;
+        form{
+           width: inherit;
+           height: inherit;
+           min-height: inherit;
+           display: flex;
+           flex-direction: column;
+           .pet_image{
+               position: relative;
+               width: 500px;
+               height: 300px;
+               margin: auto;
+           }
+           div.inp{
+               display: flex;
+               flex-direction: column;
+               margin: 10px 0;
+               label.file_label{
+                   width: max-content;
+                   height: 35px;
+                   padding: 0 20px;
+                   background-color: gray;
+                   color: white;
+                   display: flex;
+                   line-height: 2;
+                   border-radius: 20px;
+                   cursor: pointer;
+               }
+               input[type=file]{
+                   display: none;
+               }
+               input[type=text],input[type=number]{
+                   height: 40px;
+
+               }
+               textarea{
+                   min-width: 100%;
+                   max-width: 100%;
+               }
+               input[type=submit]{
+                   width: max-content;
+                   padding: 0 40px;
+                   border-radius: 20px;
+                   background: none;
+                   outline: none;
+                   font-size: 1.2rem;
+                   color: black;
+                   cursor: pointer;
+                   border: 1px solid black;
+                   height: 40px;
+               }
+           }
+        }
+    }
+}

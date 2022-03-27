@@ -1,5 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import AllBreeds from '../component/AllBreeds'
+import Header from '../component/Header'
 import FullLayout from '../hoc/FullLayout'
 import styles from '../styles/Home.module.css'
 
@@ -13,7 +15,8 @@ const Home = () => {
       </Head>
 
       <main className={styles.main}>
-        
+        <Header />
+        <AllBreeds />
       </main>
 
     </div>
