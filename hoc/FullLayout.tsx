@@ -5,7 +5,10 @@ import Footer from '../component/Footer';
 import Navbar from '../component/Navbar';
 import { petbreeds } from '../fetchData/fetchpetdata';
 import {check_authentication, fetchUser, google_auth} from '../fetchData/fetchuserdata';
-import {  breedType, user } from '../types/alltypes';
+import {  breedType, favouriteType, user, userProfile } from '../types/alltypes';
+import randomstring from 'randomstring'
+import { getuser_session, user_session } from '../fetchData/user/usersession';
+import { get_favourite } from '../fetchData/favourite/favouritelist';
 
 
 type Props = {
@@ -15,7 +18,9 @@ type Props = {
 type userContext ={
     isAuthenticated:boolean,
     user:user,
-    allPets:breedType[]
+    allPets:breedType[],
+    userSession:userProfile,
+    favouriteList:favouriteType[]
     // cart:getCart[],
     // userProfile:userProfile,
     setAuthPage:(bool:boolean)=>void,
@@ -26,6 +31,8 @@ const demoUser = {
     isAuthenticated:false,
     user:{},
     allPets:[],
+    userSession:{},
+    favouriteList:[],
     // cart:[],
     // userProfile:{},
     setAuthPage:()=>{},
@@ -42,8 +49,10 @@ const FullLayout = ({children}:Props) =>{
     const code = query.code?.toString() ?? null 
 
     const [user,setUser] = useState<user>({})
+    const [currentUserSession,setCurrentUserSession] = useState<userProfile>({})
     const [isAuthenticated,setIsAuthenticated] = useState(false)
     const [allPets,setAllPets]= useState<breedType[]>([])
+    const [favouriteList,setFavouriteList] = useState<favouriteType[]>([])
     // const [userProfile,setUserProfile] = useState<userProfile>({})
     // const [userCart,setUserCart] = useState<getCart[]>([])
 
@@ -66,6 +75,8 @@ const FullLayout = ({children}:Props) =>{
         isAuthenticated:isAuthenticated,
         user:user,
         allPets:allPets,
+        userSession:currentUserSession,
+        favouriteList:favouriteList,
         // cart:userCart,
         // userProfile:userProfile,
         setAuthPage:(bool:boolean)=>setAuthPage(bool),
@@ -89,6 +100,44 @@ const FullLayout = ({children}:Props) =>{
     },[router.asPath])
     
 ////////////////////////////////////////////////////////////////////////////
+const usersession = localStorage.getItem('usersession') ?? 'false'
+const setuserSession =async (sessionString:string) => {
+    const setSession = await user_session(sessionString)
+    if(setSession){
+        localStorage.setItem('usersession',sessionString)
+    }
+}
+const getuserSession = async(usersession:string)=>{
+    const getSession = await getuser_session(usersession)
+    if(getSession){
+        setCurrentUserSession(getSession)
+    }
+}
+useEffect(()=>{
+   
+    if(usersession === 'false'){
+       const sessionString = randomstring.generate()
+       setuserSession(sessionString)
+    }else{
+        getuserSession(usersession)
+    }
+
+},[usersession])
+/////////////////////////////////////////////////////////////////////
+const fetchFavourite=async(userid:number)=>{
+    const res = await get_favourite(userid)
+    if(res){
+       setFavouriteList(res)
+    }
+}
+useEffect(()=>{
+    if(usersession !== 'false'){
+        if(currentUserSession.id){
+       fetchFavourite(currentUserSession.id)
+        }
+    }
+},[usersession,currentUserSession])
+///////////////////////////////////////////////////////////////////////////
 useEffect(()=>{
 
     const fetch=async(state:string,code:string)=>{

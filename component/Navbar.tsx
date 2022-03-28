@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 // import { IoMdBicycle } from "react-icons/io";
 import { FaDog } from "react-icons/fa";
 import { useState } from 'react';
-
+import { AiOutlineHeart,AiFillHeart} from "react-icons/ai";
 // import { getCart} from '../types/alltypes'
 import { MdOutlineStoreMallDirectory } from "react-icons/md";
 // import user from '../pages/api/account/user';
@@ -64,7 +64,7 @@ const Navbar = (props:propType) => {
           ):('')}
          <li onMouseOver={()=>setOpenNav(false)} onClick={()=>router.push('/allpets')}>All Pets</li>
           <li onMouseOver={onMouseHover} className={styles.hover_it}>popular</li>
-          
+          <li  onMouseOver={()=>setOpenNav(false)} onClick={()=>router.push('/user/favourite')}><AiOutlineHeart title='Go to Favourite' /></li>
           {isAuthenticated ? (
             <>
             {isStaff ? (<li onClick={()=>router.push('/admin/orderinprogress')} >orders</li>):('')}

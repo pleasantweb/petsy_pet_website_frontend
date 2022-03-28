@@ -9,6 +9,10 @@ section.allpets{
     .heading{
         width: inherit;
         height: 100px;
+        text-align: center;
+        h1{
+            font-size: 3rem;color: gray;
+        }
     }
     .petsList{
         width: inherit;
@@ -19,14 +23,129 @@ section.allpets{
         padding: 0 20px;
         article{
             width: inherit;
-            height: 200px;
+            height: auto;
+            min-height: 250px;
             border-bottom: 1px solid map-get($map: $colors, $key:bluish );
-            margin: 30px 0;
+            margin: 70px 0;
+            display: flex;
+            justify-content: space-between;
+            .image{
+                position: relative;
+                width: 300px;
+                height: auto;
+            }
+            .details{
+                height: inherit;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-around;
+                h2:nth-child(1){
+                    font-size: 1.9rem;
+                    color: map-get($map: $colors, $key:bluish );
+                    text-transform: uppercase;
+                    // padding-top: 50px;
+                }
+                h2:nth-child(2){
+                    font-size: 1.6rem;
+                    color: gray;
+                    text-transform: uppercase;
+                }
+            }
+            .check_btn{
+                min-height: inherit;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-right: 30px;
+                button{
+                    width: max-content;
+                    height: 35px;
+                    padding: 0 30px;
+                    outline: none;
+                    cursor: pointer;
+                    border: 1px solid map-get($map: $colors, $key:bluish );
+                    border-radius: 20px;
+                    background: none;
+                    transition: 0.5s ease-in-out;
+                }
+                button:hover{
+                    transform: scale(1.1);
+                }
+            }
         }
     }
 }
 
 section.pet_page{
     width: 100%;
-    height: 200vh;
+    height: 150vh;
+    .petheader{
+        width: inherit;
+        height: 400px;
+        padding: 0 40px;
+        display: flex;
+        .left,.right{
+            width: 50%;
+            height: inherit;
+        }
+        .left{
+            .name_favourite{
+                display: flex;
+                align-items: center;
+            h1{
+                font-size: 2.5rem;
+                color: map-get($map: $colors, $key:bluish );
+                text-transform: uppercase;
+            }
+            svg{
+                font-size: 2.5rem;
+                margin-left: 40px;
+                color: map-get($map: $colors, $key:orangish );
+                cursor: pointer;
+            }
+        }
+            h2{
+                font-size: 1.3rem;
+                color: rgb(90, 90, 90);
+                span{
+                    padding-left: 10px;
+                    color: gray;
+                }
+
+            }
+            .actions{
+                display: flex;
+                margin-top: 30px;
+                button{
+                    width: max-content;
+                    height: 35px;
+                    padding: 0 30px;
+                    outline: none;
+                    cursor: pointer;
+                    border: 1px solid map-get($map: $colors, $key:bluish );
+                    border-radius: 20px;
+                    background: none;
+                    transition: 0.5s ease-in-out;
+                }
+                button:nth-child(2){
+                    margin-left: 10px;
+                }
+                button:hover{
+                    transform: scale(1.1);
+                }
+            }
+        }
+        .right{
+            position: relative;
+        }
+    }
+    .description{
+        width: 80%;
+        margin: 60px auto;
+        p{
+            font-size: 1.2rem;
+            color: rgb(100, 98, 98);
+        }
+    }
 }

@@ -33,6 +33,11 @@ box-shadow: 10px 0 20px map-get($map: $colors, $key:bluish );
            font-size: 1.3rem;
            cursor: pointer;
            user-select: none;
+           svg{
+               font-size: 1.7rem;
+               color: map-get($map: $colors, $key:orangish );
+               margin-top: 10px;
+           }
        }
        li:hover{
            color: map-get($map: $colors, $key:bluish );

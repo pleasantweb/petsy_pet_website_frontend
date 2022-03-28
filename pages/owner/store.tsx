@@ -19,7 +19,7 @@ const Store = () => {
             allPets.map((v,i)=>(
               <article key={i}>
                 <div className={styles.image}>
-                  <Image layout='fill' src={v.image} />
+                  <Image layout='fill' src={v.image} alt={v.breed} />
                 </div>
                 <div className={styles.details}>
                 <h2>{v.breed}</h2>

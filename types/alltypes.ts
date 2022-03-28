@@ -26,3 +26,13 @@ export type breedType={
     image:string,
     description:string
 }
+export type userProfile={
+    id?:number,
+    user?:number|null,
+    session?:string
+}
+export type favouriteType={
+    id:number,
+    user:number,
+    pet:breedType
+}
