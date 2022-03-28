@@ -3,8 +3,9 @@ import React, { createContext, useEffect, useState } from 'react'
 import AuthLayout from '../authComponent/AuthLayout';
 import Footer from '../component/Footer';
 import Navbar from '../component/Navbar';
+import { petbreeds } from '../fetchData/fetchpetdata';
 import {check_authentication, fetchUser, google_auth} from '../fetchData/fetchuserdata';
-import {  user } from '../types/alltypes';
+import {  breedType, user } from '../types/alltypes';
 
 
 type Props = {
@@ -14,6 +15,7 @@ type Props = {
 type userContext ={
     isAuthenticated:boolean,
     user:user,
+    allPets:breedType[]
     // cart:getCart[],
     // userProfile:userProfile,
     setAuthPage:(bool:boolean)=>void,
@@ -23,8 +25,9 @@ type userContext ={
 const demoUser = {
     isAuthenticated:false,
     user:{},
-    cart:[],
-    userProfile:{},
+    allPets:[],
+    // cart:[],
+    // userProfile:{},
     setAuthPage:()=>{},
     // get_user_cart:()=>{}
 }
@@ -40,6 +43,7 @@ const FullLayout = ({children}:Props) =>{
 
     const [user,setUser] = useState<user>({})
     const [isAuthenticated,setIsAuthenticated] = useState(false)
+    const [allPets,setAllPets]= useState<breedType[]>([])
     // const [userProfile,setUserProfile] = useState<userProfile>({})
     // const [userCart,setUserCart] = useState<getCart[]>([])
 
@@ -61,6 +65,7 @@ const FullLayout = ({children}:Props) =>{
     const userContextValue :userContext= {
         isAuthenticated:isAuthenticated,
         user:user,
+        allPets:allPets,
         // cart:userCart,
         // userProfile:userProfile,
         setAuthPage:(bool:boolean)=>setAuthPage(bool),
@@ -100,6 +105,19 @@ useEffect(()=>{
     }
   },[state,code])
 /////////////////////////////////////////////////////////////////////////////
+useEffect(()=>{
+    
+    const fetchPets=async()=>{
+        const petdata = await petbreeds()
+        if(petdata && petdata.length){
+            setAllPets(petdata)
+        }
+    }
+    if(allPets.length < 1){
+    fetchPets()
+    }
+},[allPets])
+/////////////////////////////////////////////////////////////////////////
 
     // useEffect(()=>{      
     //     const fetch=async(id:number)=>{

@@ -1,3 +1,7 @@
+$colors:(
+   orangish:#fb6d6c,
+   bluish:#2b92e4
+);
 section.add_new_breed{
     width: 100%;
     height: auto;
@@ -66,6 +70,86 @@ section.add_new_breed{
                    height: 40px;
                }
            }
+        }
+    }
+}
+section.store{
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+    .heading{
+        width: inherit;
+        height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 30px;
+        h1{
+            font-size: 2.5rem;
+            color: map-get($map: $colors, $key:bluish );
+            text-transform: uppercase;
+            text-decoration: underline;
+        }
+        button{
+            width: max-content;
+            height: 35px;
+            padding: 0 30px;
+            outline: none;
+            cursor: pointer;
+            border: 1px solid map-get($map: $colors, $key:bluish );
+            border-radius: 20px;
+            background: none;
+        }
+    }
+    .allPets{
+        width: inherit;
+        height: inherit;
+        min-height: inherit;
+        display: flex;
+        flex-direction: column;
+        padding: 0 20px;
+        article{
+            width: inherit;
+            height: 200px;
+            border-bottom: 1px solid map-get($map: $colors, $key:bluish );
+            margin: 30px 0;
+            display: flex;
+            justify-content: space-between;
+            // align-items: flex-end;
+            .image{
+                width: 250px;
+                height: auto;
+                position: relative;
+            }
+            .details{
+                height: inherit;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                h2{
+                    font-size: 1.6rem;
+                    color: gray;
+                    text-transform: uppercase;
+                    // padding-top: 50px;
+                }
+            }
+            
+            .actions{
+                height: inherit;
+                display: flex;
+                align-items: center;
+                button{
+                    margin-right: 10px;
+                    width: max-content;
+                    height: 35px;
+                    padding: 0 30px;
+                    outline: none;
+                    cursor: pointer;
+                    border: 1px solid map-get($map: $colors, $key:bluish );
+                    border-radius: 20px;
+                    background: none;
+                }
+            }
         }
     }
 }

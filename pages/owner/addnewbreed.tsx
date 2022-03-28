@@ -1,10 +1,21 @@
 import Image from 'next/image';
-import React, { useState } from 'react'
+import { useRouter } from 'next/router';
+import React, { useContext, useEffect, useState } from 'react'
+import { SITE_URL } from '../../config';
 import { CloudImage } from '../../fetchData/uploadImage/CloudImage';
-import FullLayout from '../../hoc/FullLayout';
+import FullLayout, { userContextHook } from '../../hoc/FullLayout';
 import styles from '../../styles/Admin.module.scss'
 
 const AddNewBreed = () => {
+    const currenetUser = useContext(userContextHook)
+    const {isAuthenticated,user} = currenetUser
+    const router = useRouter()
+    useEffect(()=>{
+        if(!isAuthenticated){
+            router.push('/')
+        }
+    },[isAuthenticated])
+    
     const [petDetails,setPetDetails] = useState({
         breed:"",
         bred_for:"",
@@ -34,6 +45,7 @@ const AddNewBreed = () => {
     }
     const descriptionChange=(e:React.ChangeEvent<HTMLTextAreaElement>)=>{
          setDescription(e.target.value)
+
     }
 ////////////////////////////////////////////////////////////////////////////////
 const onFileChange=async(e:React.ChangeEvent<HTMLInputElement>)=>{
@@ -62,6 +74,39 @@ const onFileChange=async(e:React.ChangeEvent<HTMLInputElement>)=>{
 }
 }
 //////////////////////////////////////////////////////////////////////////////
+const onSubmit=async(e:React.FormEvent<HTMLFormElement>)=>{
+   e.preventDefault()
+  
+   const body = JSON.stringify({breed,bred_for,life_span,temprament,origin,price,image,description})
+   if(user.is_staff){
+   const res = await fetch(`${SITE_URL}/api/pethome/addpet`,{
+       method:"POST",
+       headers:{
+           'Content-Type':"application/json"
+       },
+      body:body
+   })
+  
+   if(res.status === 201){
+       setPetDetails({
+        breed:"",
+        bred_for:"",
+        life_span:"",
+        temprament:"",
+        origin:"",
+        price:0,
+        image:""
+       })
+       setDescription("")
+       window.scrollTo({
+           top:0,
+           behavior:'smooth'
+       })
+   }
+}
+   
+}
+////////////////////////////////////////////////////////////////////////////
 
   return (
     <section className={styles.add_new_breed}>
@@ -69,7 +114,7 @@ const onFileChange=async(e:React.ChangeEvent<HTMLInputElement>)=>{
         <h1>Add New Breed</h1>
         </div>
        <div className={styles.add_new_form}>
-           <form action="">
+           <form action="" onSubmit={onSubmit}>
            <div className={styles.inp}>
                <label className={styles.file_label} htmlFor="image">Upload Pet Image</label>
                <input onChange={onFileChange} type="file" name="image" id='image' />

@@ -55,15 +55,15 @@ const Navbar = (props:propType) => {
         <div className={styles.logo} onClick={()=>router.push('/')}><FaDog/> Petsy</div>
         <ul className={styles.navOptions}>
          
-{/*         
+        
           {isAuthenticated && isStaff ? (
             <>
-            <li onClick={()=>router.push('/newcycle')}>sell</li>
-            <li onClick={()=>router.push('/admin/store')}>store</li>
+            <li onClick={()=>router.push('/owner/addnewbreed')}>new</li>
+            <li onClick={()=>router.push('/owner/store')}>store</li>
             </>
-          ):('')} */}
-         
-          <li onMouseOver={onMouseHover} className={styles.hover_it}>bikes</li>
+          ):('')}
+         <li onMouseOver={()=>setOpenNav(false)} onClick={()=>router.push('/allpets')}>All Pets</li>
+          <li onMouseOver={onMouseHover} className={styles.hover_it}>popular</li>
           
           {isAuthenticated ? (
             <>

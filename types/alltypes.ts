@@ -16,15 +16,13 @@ export type heightWeight={
     metric: string
 }
 export type breedType={
-    bred_for: string,
-    breed_group: string
-    height: heightWeight
-    id: number
-    image: breedImage
-    life_span: string
-    name:string
-    origin: string
-    reference_image_id: string
-    temperament: string
-    weight: heightWeight
+    id:number,
+    breed:string,
+    bred_for:string,
+    life_span:string,
+    temprament:string,
+    origin:string,
+    price:number,
+    image:string,
+    description:string
 }
