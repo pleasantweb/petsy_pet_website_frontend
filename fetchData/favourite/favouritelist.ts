@@ -26,3 +26,15 @@ export const get_favourite=async(userid:number)=>{
     }
     
 }
+export const remove_favourite=async(favid:number)=>{
+   const res = await fetch(`${API_URL}/allusers/alluser/favourite/${favid}`,{
+       method:"DELETE"
+   })
+   console.log(res);
+   if(res.status === 204){
+       return true
+   }else{
+       return false
+   }
+   
+}

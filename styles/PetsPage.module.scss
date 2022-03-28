@@ -82,18 +82,21 @@ section.pet_page{
     height: 150vh;
     .petheader{
         width: inherit;
-        height: 400px;
+        height: auto;
+        min-height: 400px;
         padding: 0 40px;
         display: flex;
         .left,.right{
             width: 50%;
             height: inherit;
+            min-height: auto;
         }
         .left{
             .name_favourite{
                 display: flex;
                 align-items: center;
             h1{
+                width: min-content;
                 font-size: 2.5rem;
                 color: map-get($map: $colors, $key:bluish );
                 text-transform: uppercase;
@@ -139,6 +142,7 @@ section.pet_page{
         .right{
             position: relative;
         }
+        margin-bottom: 50px;
     }
     .description{
         width: 80%;
@@ -146,6 +150,89 @@ section.pet_page{
         p{
             font-size: 1.2rem;
             color: rgb(100, 98, 98);
+        }
+    }
+}
+
+section.favourite_page{
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+    .pets{
+        width: inherit;
+        height: inherit;
+        min-height: inherit;
+        display: flex;
+        flex-direction: column;
+        padding: 0 30px;
+        article{
+            width: inherit;
+            height: 450px;
+            display: flex;
+     border-bottom: 1px solid map-get($map:$colors , $key: bluish);
+     padding-bottom: 30px;
+     margin:  70px 0;
+            .details{
+                width: 50%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                padding-top: 20px;
+                .name_pet{
+                    display: flex;
+                    align-items: center;
+                    h1{
+                        font-size: 2.5rem;
+                        color: map-get($map: $colors, $key:bluish );
+                        text-transform: uppercase;
+                    }
+                    svg{
+                        margin-left: 50px;
+                        font-size: 2.5rem;
+                        color: map-get($map: $colors, $key:orangish );
+                    }
+                }
+               
+                .pet_details{
+                    h2{
+                        color: rgb(87, 85, 85);
+                    }
+                }
+                .actions{
+                    display: flex;
+                button{
+                    width: max-content;
+                    height: 40px;
+                    padding: 0 30px;
+                    background: none;
+                    outline: none;
+                    border: 1px solid map-get($map: $colors, $key:bluish ) ;
+                    cursor: pointer;
+                    transition: 0.5s ease-in-out;
+                    border-radius: 20px;
+                    margin-top: 20px;
+                }
+                button:nth-child(2){
+                    margin-left: 20px;
+                }
+                button:hover{
+                    transform: scale(1.1);
+                }
+            }
+            }
+            .image{
+                width: 50%;
+                height: auto;
+                position: relative;
+            }
+        }
+        h1.noFav{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 50px;
+            font-size: 3rem;
+            color: gray;
         }
     }
 }

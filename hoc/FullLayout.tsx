@@ -25,6 +25,7 @@ type userContext ={
     // userProfile:userProfile,
     setAuthPage:(bool:boolean)=>void,
     // get_user_cart:()=>void
+    getFavouriteList:(userid:number)=>void
 }
 
 const demoUser = {
@@ -37,6 +38,7 @@ const demoUser = {
     // userProfile:{},
     setAuthPage:()=>{},
     // get_user_cart:()=>{}
+    getFavouriteList:()=>{}
 }
 
 export const userContextHook = createContext<userContext>(demoUser)
@@ -80,6 +82,7 @@ const FullLayout = ({children}:Props) =>{
         // cart:userCart,
         // userProfile:userProfile,
         setAuthPage:(bool:boolean)=>setAuthPage(bool),
+        getFavouriteList:(userid:number)=>fetchFavourite(userid)
         // get_user_cart:()=>get_user_cart()
     }
 
@@ -100,7 +103,7 @@ const FullLayout = ({children}:Props) =>{
     },[router.asPath])
     
 ////////////////////////////////////////////////////////////////////////////
-const usersession = localStorage.getItem('usersession') ?? 'false'
+
 const setuserSession =async (sessionString:string) => {
     const setSession = await user_session(sessionString)
     if(setSession){
@@ -114,7 +117,7 @@ const getuserSession = async(usersession:string)=>{
     }
 }
 useEffect(()=>{
-   
+    const usersession = localStorage.getItem('usersession') ?? 'false'
     if(usersession === 'false'){
        const sessionString = randomstring.generate()
        setuserSession(sessionString)
@@ -122,21 +125,24 @@ useEffect(()=>{
         getuserSession(usersession)
     }
 
-},[usersession])
+},[])
 /////////////////////////////////////////////////////////////////////
 const fetchFavourite=async(userid:number)=>{
+    console.log('yoooo');
+    
     const res = await get_favourite(userid)
     if(res){
        setFavouriteList(res)
     }
 }
 useEffect(()=>{
+    const usersession = localStorage.getItem('usersession') ?? 'false'
     if(usersession !== 'false'){
         if(currentUserSession.id){
        fetchFavourite(currentUserSession.id)
         }
     }
-},[usersession,currentUserSession])
+},[currentUserSession])
 ///////////////////////////////////////////////////////////////////////////
 useEffect(()=>{
 

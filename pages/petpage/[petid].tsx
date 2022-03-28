@@ -14,8 +14,21 @@ const PetPage = () => {
   const [favourite,setFavourite] = useState(false)
   const [petData,setPetData] = useState<breedType>()
 
+
+
   const currenetUser = useContext(userContextHook)
-  const {isAuthenticated,user,allPets,userSession} = currenetUser
+  const {isAuthenticated,user,allPets,userSession,favouriteList,getFavouriteList} = currenetUser
+
+  useEffect(()=>{
+    
+    if(petid){
+      let check = favouriteList.filter(v=>v.pet.id === parseInt(petid.toString()))
+     if(check.length){
+       setFavourite(true)
+     }
+      
+    }
+  },[petid,favouriteList])
 
   useEffect(()=>{
     if(petid){
@@ -34,6 +47,7 @@ const PetPage = () => {
      setFavourite(b)
      if(userSession.id){
      favourite_pet(userSession.id,petid)
+     getFavouriteList(userSession.id)
      }
   }
   
