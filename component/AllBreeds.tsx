@@ -19,7 +19,7 @@ const AllBreeds = () => {
     const [currentPet,setCurrentPet] = useState<breedType>()
 
    
-    const [breed,setBreed] = useState("Husky")
+    const [breed,setBreed] = useState("Siberian Husky")
 
     const onChange=(e:React.ChangeEvent<HTMLInputElement>)=>{
         setBreed(e.target.value)
