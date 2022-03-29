@@ -78,7 +78,7 @@ console.log(currentPet);
       
        <div className={styles.dog_breeds}>
            {currentPet ? (
-               <>
+               <div className={styles.breed}>
                <div className={styles.image}>
                    <Image src={currentPet.image} alt={currentPet.breed} layout='fill' />
                </div>
@@ -87,13 +87,13 @@ console.log(currentPet);
                    <h2>{currentPet.temprament}</h2>
                    <button onClick={()=>router.push(`/petpage/${currentPet.id}`)}>check</button>
                </div>
-               </>
+               </div>
            ):(allPets && allPets.length ? (
                allPets.map((v,i)=>{
-                   if(v.breed === 'husky'){
+                   if(v.breed === 'Siberian Husky'){
                        return (
-                        <>
-                        <div className={styles.image}>
+                        <div className={styles.breed} key={i}>
+                        <div  className={styles.image}>
                             <Image src={v.image} alt={v.breed} layout='fill' />
                         </div>
                         <div className={styles.content}>
@@ -101,7 +101,7 @@ console.log(currentPet);
                             <h2>{v.temprament}</h2>
                             <button onClick={()=>router.push(`/petpage/${v.id}`)}>check</button>
                         </div>
-                        </>
+                        </div>
                        )
                    }
                })

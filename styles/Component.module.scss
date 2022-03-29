@@ -229,10 +229,15 @@ section.allBreeds{
      width: inherit;
      height: 350px;
     //  border: 1px solid black;
-     display: flex;
+     
     
-     padding: 10px 50px;
+    
      margin-top: 50px;
+     .breed{
+         width: inherit;
+         height: inherit;
+         display: flex;
+         padding: 10px 50px;
      h1.not_found{
          font-size: 3rem;
          color: gray;
@@ -279,6 +284,7 @@ section.allBreeds{
         }
     }
  }
+}
 }
 
 section.check_all_breed,section.pet_compo{
