@@ -14,7 +14,7 @@ const AddNewBreed = () => {
         if(!isAuthenticated){
             router.push('/')
         }
-    },[isAuthenticated])
+    },[isAuthenticated,router])
     
     const [petDetails,setPetDetails] = useState({
         breed:"",
