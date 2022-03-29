@@ -1,7 +1,9 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import AllBreeds from '../component/AllBreeds'
+import CheckAllBreed from '../component/CheckAllBreed'
 import Header from '../component/Header'
+import PetComponent from '../component/PetComponent'
 import FullLayout from '../hoc/FullLayout'
 import styles from '../styles/Home.module.css'
 
@@ -17,6 +19,8 @@ const Home = () => {
       <main className={styles.main}>
         <Header />
         <AllBreeds />
+        <PetComponent />
+        <CheckAllBreed />
       </main>
 
     </div>

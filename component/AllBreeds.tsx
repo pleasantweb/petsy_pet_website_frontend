@@ -1,6 +1,6 @@
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 import React, { useContext, useEffect, useState } from 'react'
-import { petbreeds } from '../fetchData/fetchpetdata'
 import { userContextHook } from '../hoc/FullLayout'
 import styles from '../styles/Component.module.scss'
 import { breedType } from '../types/alltypes'
@@ -8,19 +8,18 @@ import { breedType } from '../types/alltypes'
 
 
 const AllBreeds = () => {
-    const [pageNumber,setPageNumber]= useState(0)
-    const [petDetails,setPetDetails] = useState<breedType[]>([])
+    const router = useRouter()
+    const currenetUser = useContext(userContextHook)
+    const {allPets} = currenetUser
+
 
     const [breedSuggest,setBreedSuggest] = useState<breedType[]>([])
     const [openSuggest,setOpenSuggest] = useState(false)
 
     const [currentPet,setCurrentPet] = useState<breedType>()
 
-    const currenetUser = useContext(userContextHook)
-  const {allPets} = currenetUser
-
-  
-    const [breed,setBreed] = useState("")
+   
+    const [breed,setBreed] = useState("Husky")
 
     const onChange=(e:React.ChangeEvent<HTMLInputElement>)=>{
         setBreed(e.target.value)
@@ -31,7 +30,8 @@ const AllBreeds = () => {
     }
     const onSubmit=(e:React.FormEvent<HTMLFormElement>)=>{
          e.preventDefault()
-         const yo = allPets.filter(v=>v.breed === breed)
+         const yo= allPets.filter(v=>v.breed.toLowerCase().includes(breed.toLowerCase()))
+      
          setCurrentPet(yo[0])
     }
     const onBlurr=()=>{
@@ -85,10 +85,27 @@ console.log(currentPet);
                <div className={styles.content}>
                    <h1>{currentPet.breed}</h1>
                    <h2>{currentPet.temprament}</h2>
-                   <button>check</button>
+                   <button onClick={()=>router.push(`/petpage/${currentPet.id}`)}>check</button>
                </div>
                </>
-           ):('')}
+           ):(allPets && allPets.length ? (
+               allPets.map((v,i)=>{
+                   if(v.breed === 'husky'){
+                       return (
+                        <>
+                        <div className={styles.image}>
+                            <Image src={v.image} alt={v.breed} layout='fill' />
+                        </div>
+                        <div className={styles.content}>
+                            <h1>{v.breed}</h1>
+                            <h2>{v.temprament}</h2>
+                            <button onClick={()=>router.push(`/petpage/${v.id}`)}>check</button>
+                        </div>
+                        </>
+                       )
+                   }
+               })
+           ):(<h1 className={styles.not_found}>Not Found</h1>))}
            
        </div>
       
