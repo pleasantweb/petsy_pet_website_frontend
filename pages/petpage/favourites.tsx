@@ -1,6 +1,8 @@
+import { GetServerSideProps } from 'next';
 import Image from 'next/image';
 import React, { useContext, useEffect, useState } from 'react'
 import { AiFillHeart } from 'react-icons/ai';
+import { API_URL } from '../../config';
 import { remove_favourite } from '../../fetchData/favourite/favouritelist';
 import FullLayout, { userContextHook } from '../../hoc/FullLayout';
 import styles from '../../styles/PetsPage.module.scss'
@@ -64,3 +66,14 @@ export default Favourites;
 Favourites.getLayout= function(page:typeof Favourites){
     return <FullLayout>{page}</FullLayout>
 }
+export const getServerSideProps:GetServerSideProps = async (context) => {
+    
+
+  return {
+    props:{}
+  }
+  }
+// export const getStaticProps = async () => {
+//   const res = await fetch(`${API_URL}/allusers/alluser/favourite/?user=${userid}`)
+//   const data = await res.json()
+// }

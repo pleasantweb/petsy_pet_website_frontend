@@ -27,11 +27,11 @@ const Navbar = (props:propType) => {
  const [openNav,setOpenNav] = useState(false)
 
  const bike_categories= [
-  {id:1,category:'electric_bike',name:'E-bikes'},
-  {id:2,category:'hybrid',name:'Hybrid'},
-  {id:3,category:'mtb',name:'MTB'},
-  {id:4,category:'road',name:'Road-bikes'},
-  {id:5,category:'fatbike',name:'Fat-bikes'},
+  {id:1,name:'Pet-Food'},
+  {id:2,name:'Pet-Home'},
+  {id:3,name:'Veterinarian'},
+  {id:4,name:'Pet-Grooming'},
+  {id:5,name:'Accessories '},
  
 ]
  

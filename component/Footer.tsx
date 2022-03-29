@@ -2,18 +2,17 @@ import styles from '../styles/Component.module.scss'
 import { IoMdBicycle } from "react-icons/io";
 import { useRouter } from 'next/router';
 import { AiOutlineCopyrightCircle } from "react-icons/ai";
-
+import { FaDog } from "react-icons/fa";
 const Footer = () => {
 
   const router = useRouter()
 
   const bike_categories= [
-    {id:1,category:'electric_bike',name:'E-bikes'},
-    {id:2,category:'hybrid',name:'Hybrid'},
-    {id:3,category:'mtb',name:'MTB'},
-    {id:4,category:'road',name:'Road-bikes'},
-    {id:5,category:'fatbike',name:'Fat-bikes'},
-   
+    {id:1,name:'Pet-Food'},
+    {id:2,name:'Pet-Home'},
+    {id:3,name:'Veterinarian'},
+    {id:4,name:'Pet-Grooming'},
+    {id:5,name:'Accessories '},
   ]
   const current_year = ()=>{
     const date = new Date()
@@ -27,12 +26,12 @@ const Footer = () => {
 
  
         <div className={styles.logo}>
-        <IoMdBicycle /> <h1>Cicilo</h1>
+        <FaDog /> <h1>Petsy</h1>
         </div>
         <div className={styles.categories}>
         <ul>
            {bike_categories.map((v,i)=>(
-             <li key={i} onClick={()=>router.push(`/cycle/category/${v.category}`)}>{v.name}</li>
+             <li key={i}>{v.name}</li>
            ))}
           
          </ul>
