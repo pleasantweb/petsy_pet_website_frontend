@@ -79,12 +79,12 @@ const Login = (props:propType) => {
         <div className={styles.heading}>
             <h1>SIGN IN</h1>
         </div>
-        <div className={styles.google_login}>
+        {/* <div className={styles.google_login}>
                 <button  onClick={googleLogin} className={styles.google_btn}> <AiOutlineGoogle /> Login with google  </button>
             </div>  
             <div className={styles.or_form}>
                 <p>OR</p>
-            </div>
+            </div> */}
             <form autoComplete='off' action="" onSubmit={onSubmit}>
                 <div className={styles.inp}>
                     <AiOutlineMail />

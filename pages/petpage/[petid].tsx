@@ -68,8 +68,8 @@ const PetPage = () => {
               <h2>Temprament: <span>{petData.temprament}</span></h2>
               <h2>Addoption Charge: <span>Rs.{petData.price}</span></h2>
               <div className={styles.actions}>
-                <button>Enquire</button>
-                <button>Addopt</button>
+                <button onClick={()=>router.push('/shop/payment')}>Enquire</button>
+                <button onClick={()=>router.push('/shop/payment')} >Addopt</button>
               </div>
 
             </div>

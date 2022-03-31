@@ -403,3 +403,16 @@ section.footer{
     }
 }
 }
+
+div.WorkInProgress{
+    width: inherit;
+    height: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    h1{
+        text-transform: uppercase;
+        font-size: 2.5rem;
+        color: gray;
+    }
+}
